@@ -2,9 +2,9 @@
 .container.content
   .page-header
     %h2
-      %i.icon-globe
+      %i.icon-gamepad
       TanksWorld    
-      %small.muted=@env['REMOTE_ADDR']
+      %small.muted=request.ip
   
   %span12
     %ul.thumbnails
