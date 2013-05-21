@@ -38,10 +38,10 @@ class GameWindow < Window
     self.caption = NAME
     
     @client = Client.new(server, port) # client that communicates with the server
+    
     config = @client.read_message
-
-    map_url, spritesheet_url, default_hp = nil, nil, nil    
-    open(config) { |file| map_url, spritesheet_url, default_hp = *file.read.split("|") }    
+    map_url, spritesheet_url, default_hp = nil, nil, nil      
+    open(config) { |file| map_url, spritesheet_url, default_hp = *file.read.split("|") }      
     open('sprites.png', 'wb') { |file| file << open(spritesheet_url).read }    
     @spritesheet = Image.load_tiles(self, 'sprites.png', 32, 32, true)
     @map = Map.new(self, map_url)  # map representing the movable area    
