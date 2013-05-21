@@ -6,6 +6,10 @@
       TanksWorld    
       %small.muted=request.host
   
+
+      %a.help-button{'data-toggle' => 'modal', href: "#help"} 
+        %i.icon-question-sign.info-button.pull-right
+  
   %span12
     %ul.thumbnails
       - @arenas.each do |arena|  
@@ -30,7 +34,41 @@
               %i.icon-plus
             .lead Start a new game arena
             
+#help.modal.hide.fade
+  .modal-header
+    %a.close{'data-dismiss' => 'modal'} x
+    %h3 
+      About TanksWorld
+  .modal-body
+    %p
+      TanksWorld is a Gosu-based, real-time, multi-player 2D game, base on
+      %a{href:"http://en.wikipedia.org/wiki/Tank_Battalion"} Tank Battalion.
+    %p
+      To play, first create a game arena by clicking on the 'start a new game arena' box below.
+      Then clone the game from GitHub with 
+      %pre
+        git clone http://github.com/sausheong/tanksworld.git
+      /. 
+    %p
+      Once you have the game on your machine, run 
+      %code
+        bundle install
+      to install the game.
+      
+    %p 
+      Finally, run the game with:
+      %pre
+        ruby player.rb  &lt;server&gt; &lt;port&gt; &lt;player name&gt; &lt;tank color&gt;
+      
+      The server is the host that your TanksWorld is running on. You can find this next to the TanksWorld header. The port is given by the arena, located in the arena box. Tank colors can be any 
+      %a{href: "http://en.wikipedia.org/wiki/Web_colors"} X11 color names 
+      in snake case e.g. `yellow_green`, `light_steel_blue` and so on. 
+        
+    %p And you're off! Happy blasting!
 
+  .modal-footer
+    %a.btn.btn-success{href: "#", "data-dismiss" => "modal"} Ok
+    
 #new-arena.modal.hide.fade
   .modal-header
     %a.close{'data-dismiss' => 'modal'} x
