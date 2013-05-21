@@ -19,15 +19,19 @@ In addition to these 2 libraries, TanksWorld uses Sinatra and Haml to create a s
 
 Just do this:
 
-1. Run the game server. Start, the web application using thin.
+1. Start the TanksWorld web application using thin.
  
     `$ thin start`
 
-2. Go to the url http://localhost:3000. You should see the TanksWorld web interface. Click on the 'start a new arena' button. Once an arena is started, you'll see the port you can connect to.
+   (You can also start the server at any other port)
+
+2. Go to the url http://<web_app_hostname>:<web_app_port>. You should see the TanksWorld web interface. Click on the 'start a new arena' box.
+
+3. You will have the choice to use different maps, sprite sheets and default starting hit points in separate arenas. The defaults are provided. Once an arena is started, you'll see the port you can connect to.
      
 3. Run the game client in any computer in the same network, and connecting to the server.
 
     `$ ruby player.rb  <server> <port> <player name> <tank color>`
       
-The server is the IP that your TanksWorld is running on. The port is given by the interface as above. Tank colors can be any [X11 color names](http://en.wikipedia.org/wiki/Web_colors) in snake case e.g. `yellow_green`, `light_steel_blue` and so on. 
+The server is the host that your TanksWorld is running on. The port is given by the interface as above. Tank colors can be any [X11 color names](http://en.wikipedia.org/wiki/Web_colors) in snake case e.g. `yellow_green`, `light_steel_blue` and so on. 
    
