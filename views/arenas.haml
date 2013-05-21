@@ -1,0 +1,52 @@
+%section
+.container.content
+  .page-header
+    %h2
+      %i.icon-globe
+      TanksWorld    
+      %small.muted=@env['REMOTE_ADDR']
+  
+  %span12
+    %ul.thumbnails
+      - @arenas.each do |arena|  
+        %li.span3
+          .thumbnail.arena.center
+            %div{style: 'font-size: 6em'}
+              %i.icon-gamepad{style: 'color: skyblue'}              
+            %h3
+              #{arena.players.size} players      
+            .lead
+              port: #{arena.name.to_s.split("_").last}
+            %a.btn.btn-danger{href:"/arena/stop/#{arena.name}"} 
+              %i.icon-stop
+              stop
+      %li.span3.muted
+        %a.thumbnail.arena-add.center{href: "#new-arena", 'data-toggle' => 'modal'}
+          %div{style: 'font-size: 6em'}
+            %br
+            %br
+            %br
+            %h1
+              %i.icon-plus
+            .lead Start a new game arena
+            
+
+#new-arena.modal.hide.fade
+  .modal-header
+    %a.close{'data-dismiss' => 'modal'} x
+    %h3 
+      Start a New Arena
+  .modal-body
+    %p.muted Settings for the new arena (optional).
+
+    %form.well#new-arena-form{action: "/arena/start", method: 'post'}
+      %label Map URL
+      %input.modal-field{type: "text", placeholder: "URL to your map file", name: 'map_url', value: "http://#{request.host_with_port}/maps/map.txt"}
+      %label Sprite sheet URL
+      %input.modal-field{type: "text", placeholder: "URL to your sprite sheet file", name: 'spritesheet_url', value: "http://#{request.host_with_port}/spritesheets/spritesheet.png"}
+      %label Starting hit points
+      %input.modal-field{type: "text", name: 'default_hp', value: '10'}
+
+  .modal-footer
+    %a.wait.btn.btn-primary{href: "#", onclick: "$('#new-arena-form').submit(); return false;"} Start Arena
+    %a.btn{href: "#", "data-dismiss" => "modal"} Cancel
